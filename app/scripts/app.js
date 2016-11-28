@@ -12,7 +12,9 @@ angular
 	.module('nasdaqApp', [
 		'ngResource',
 		'ngRoute',
-		'ngSanitize'
+		'ngSanitize',
+		'infinite-scroll',
+		'ui.bootstrap'
 	])
 	.config(function ($routeProvider) {
 		$routeProvider

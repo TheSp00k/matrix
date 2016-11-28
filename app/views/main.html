@@ -15,144 +15,27 @@
                     <input ng-model="matrixSize" type="number" class="form-control" id="matrixSize"
                            placeholder="Size of matrix">
                     <span class="input-group-btn">
-                        <button ng-click="generateMatrix()" class="btn btn-primary" type="button">Generate</button>
+                        <button ng-click="resetData(); loadPage();" class="btn btn-primary" type="button">Generate</button>
                     </span>
                 </div>
             </div>
         </div>
+        <!--TODO make dynamic input size-->
+        {{horizontalPageSize}}
+        {{currentPage}}
+        {{previousPage}}
+        <div ng-show="generatedMatrix.length > 0" class="text-center">
+            <ul uib-pagination total-items="matrixSize" items-per-page="horizontalPageSize" ng-change="loadHorizontalPage()" ng-model="currentPage" max-size="5" class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>
+            <!--<button ng-click="loadLeft()" ng-disabled="!showLessHorizontal" class="pull-left">hi</button>-->
+            <!--<button ng-click="loadRight()" ng-disabled="!showMoreHorizontal" class="pull-right">bye</button>-->
+        </div>
+        <div ng-if="generatedMatrix.length > 0" infinite-scroll="loadPage()" infinite-scroll-disabled='loading || !showMore' style="margin: 3px 0;">
 
-        <div class="col-xs-12">
-            <div class="row">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-            </div>
-            <div class="row">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-            </div>
-            <div class="row">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-            </div>
-            <div class="row">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-            </div><div class="row">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-            </div><div class="row">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-            </div><div class="row">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-            </div><div class="row">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-            </div>
-            <div class="row">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
-                <input type="text" class="col-xs-1">
+            <div ng-repeat="row in generatedMatrix track by $index" >
+                <!--TODO make scrollable input (by page)-->
+                {{$index + 1}}
+                <input type="text" ng-model="row" class="form-control matrix-input">
             </div>
         </div>
-    <span ng-repeat="test in tests track by $index">
-        <div>{{test}}</div>
-
-    </span>
-
-        <!--<div ng-repeat="line in matrixLines" class="row">-->
-
-        <!--</div>-->
-
     </form>
 </div>
